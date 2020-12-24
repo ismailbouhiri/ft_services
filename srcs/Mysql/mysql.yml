@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+spec:
+  template:
+    metadata:
+      name: mysql-pod
+      labels:
+        app: mysqlPod
+        type: mysqltype
+    spec:
+      containers: 
+        - name: mysqlcontainer
+          image: my-mysql
+          imagePullPolicy: Never
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysqlPod
+      type: mysqltype
