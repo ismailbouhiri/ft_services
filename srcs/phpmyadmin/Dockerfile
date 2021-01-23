@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.12
 
 RUN apk update
 
@@ -19,4 +19,3 @@ EXPOSE 5000
 CMD ["/bin/sh", "-c", "/usr/sbin/php-fpm7; exec nginx -g 'daemon off;';"]
 
 ENTRYPOINT php -S 0.0.0.0:5000 -t /usr/share/webapps/phpmyadmin
-#php -S 0.0.0.0:5000 -t /usr/share/webapps/phpmyadmin

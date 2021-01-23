@@ -22,12 +22,20 @@ spec:
         app: mysqlPod
         type: mysqltype
     spec:
+      volumes:
+        - name: db-pv
+          persistentVolumeClaim:
+            claimName: pv-claim 
+      restartPolicy: Always
       containers: 
         - name: mysqlcontainer
           image: my-mysql
           ports:
             - containerPort: 3306
           imagePullPolicy: Never
+          volumeMounts:
+            - mountPath: "/var/lib/mysql"
+              name: db-pv
   replicas: 1
   selector:
     matchLabels:

@@ -1,18 +1,18 @@
 #!/bin/bash
-
 USER=$(whoami)
 DOCKER_DIR=/goinfre/$USER/.docker
 MINIKUBE_DIR=/goinfre/$USER/.minikube
 KUBE_DIR=/goinfre/$USER/.kube
-VBOX_DIR=/goinfre/$USER/VirtualBox
+/goinfre/$USER/VirtualBox=/goinfre/$USER/VirtualBox
 HOMEBREW_CACHE=/goinfre/$USER/Homebrew
 
 echo "installing brew..."
-mkdir $HOMEBREW_CACHE
+mkdir /goinfre/$USER
+mkdir /goinfre/$USER/Homebrew
 if [ -d "$HOME/Library/Caches/Homebrew" ]; then
 	rm -rf $HOME/Library/Caches/Homebrew
 fi
-ln -s $HOMEBREW_CACHE $HOME/Library/Caches
+ln -s /goinfre/$USER/Homebrew $HOME/Library/Caches
 
 rm -rf $HOME/.brew && git clone --depth=1 https://github.com/Homebrew/brew $HOME/goinfre/ibouhiri/.brew && echo 'export PATH=$HOME/goinfre/ibouhiri/.brew/bin:$PATH' >> $HOME/.zshrc && source $HOME/.zshrc && brew update
 
@@ -21,29 +21,29 @@ brew install docker docker-machine minikube
 
 # make .minikube .docker .kube VIrtualBox dirs
 
-mkdir $DOCKER_DIR
+mkdir /goinfre/$USER/.docker
 if [ -d "$HOME/.docker" ]; then
 	rm -rf $HOME/.docker
 fi
-ln -s $DOCKER_DIR $HOME
+ln -s /goinfre/$USER/.docker $HOME
 
-mkdir $MINIKUBE_DIR
+mkdir /goinfre/$USER/.minikube
 if [ -d "$HOME/.minikube" ]; then
 	rm -rf $HOME/.minikube
 fi
-ln -s $MINIKUBE_DIR $HOME
+ln -s /goinfre/$USER/.minikube $HOME
 
-mkdir $KUBE_DIR
+mkdir /goinfre/$USER/.kube
 if [ -d "$HOME/.kube" ]; then
 	rm -rf $HOME/.kube
 fi
-ln -s $KUBE_DIR $HOME
+ln -s /goinfre/$USER/.kube $HOME
 
-mkdir $VBOX_DIR
+mkdir /goinfre/$USER/VirtualBox
 if [ -d "$HOME/Library/VirtualBox" ]; then
 	rm -rf $HOME/Library/VirtualBox
 fi
-ln -s $VBOX_DIR $HOME/Library/
+ln -s /goinfre/$USER/VirtualBox $HOME/Library/
 
 # add to .zshrc o .bashrc
 #export PATH=/goinfre/$USER/.brew/bin:$PATH
@@ -60,3 +60,4 @@ ln -s $VBOX_DIR $HOME/Library/
 # echo "Starting minikube"
 # minikube start
 # eval $(minikube -p minikube docker-env)
+

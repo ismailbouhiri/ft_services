@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ftps
+  annotations:
+    metallb.universe.tf/allow-shared-ip: shared
+spec:
+  type: LoadBalancer
+  ports:
+  - name: ftpsdefaultport
+    port: 21
+    targetPort: 21
+  - name: costmerport
+    port: 21000
+    targetPort: 21000
+  selector:
+    app: ftpsPod
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ftpsdeploy
+spec:
+  template:
+    metadata:
+      name: ftps-pod
+      labels:
+        app: ftpsPod
+        type: ftps
+    spec:
+      containers: 
+        - name: ftpscontainer
+          image: my-ftps
+          ports:
+            - name: ftpsdefaultport
+              containerPort: 21
+            - name: costmerport
+              containerPort: 21000
+          imagePullPolicy: Never
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ftpsPod
+      type: ftps
