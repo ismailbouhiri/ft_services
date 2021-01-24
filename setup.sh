@@ -1,5 +1,5 @@
 minikube delete
-minikube start
+minikube start --driver=virtualbox
 eval $(minikube -p minikube docker-env)
 
 # -------------------------- Install Volumes ---------------------------
