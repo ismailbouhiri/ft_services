@@ -16,7 +16,6 @@ RUN wget http://wordpress.org/latest.tar.gz && \
 
 COPY wp-config.php /var/www/localhost/htdocs/wordpress
 
-# COPY default.conf /etc/nginx/conf.d
+COPY default.conf /etc/nginx/conf.d
 
 CMD ["/bin/sh", "-c", "/usr/sbin/php-fpm7; exec nginx -g 'daemon off;';"]
-ENTRYPOINT php -S 0.0.0.0:5050 -t /var/www/localhost/htdocs/wordpress

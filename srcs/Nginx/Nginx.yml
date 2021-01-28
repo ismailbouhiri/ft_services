@@ -13,6 +13,9 @@ spec:
   - name: https
     port: 443
     targetPort: 443
+  - name: ssh
+    port: 22
+    targetPort: 22
   selector:
     app: NginxPod
 ---
