@@ -4,6 +4,17 @@ RUN apk add nginx
 RUN mkdir /run/nginx/;
 RUN apk add openssl openssh openrc;
 COPY default.conf /etc/nginx/conf.d
-COPY NginxStart.sh .
+COPY start.sh .
+RUN mkdir .ssh
+RUN adduser -D ibouhiri -G root && \
+    echo "ibouhiri:ibouhiri" | chpasswd && \
+    openrc && \
+    touch /run/openrc/softlevel
+RUN openssl req -x509 -nodes -days 365 -subj "/C=CA/ST=QC/O=Company, Inc./CN=mydomain.com" -addext "subjectAltName=DNS:mydomain.com" \
+    -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt && \
+    echo "<h1>Welcome To Nginx!</h1>" > /var/www/localhost/htdocs/index.html;
+COPY authorized_keys .ssh/
+RUN chown -R ibouhiri:root /etc/ssh
+
 EXPOSE 80 443 22
-CMD ["sh", "NginxStart.sh"]
+ENTRYPOINT sh start.sh

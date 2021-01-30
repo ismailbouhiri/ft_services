@@ -1,5 +1,6 @@
 minikube delete
 minikube start --driver=virtualbox
+minikube addons enable dashboard 
 eval $(minikube -p minikube docker-env)
 
 # -------------------------- Install Volumes ---------------------------
@@ -33,3 +34,6 @@ kubectl apply -f srcs/FTPS/ftp.yml
 kubectl apply -f srcs/Wordpress/wordpress.yml
 kubectl apply -f srcs/phpmyadmin/phpmyadmin.yml
 kubectl apply -f srcs/Mysql/mysql.yml
+
+ssh-keygen -R 192.168.99.103
+minikube dashboard &

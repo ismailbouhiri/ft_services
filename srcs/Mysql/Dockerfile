@@ -14,6 +14,8 @@ COPY mariadb-server.cnf /etc/my.cnf.d
 
 COPY Users.sql .
 
+COPY pma.sql .
+
 COPY mysql.sh .
 
 VOLUME [ "/var/lib/mysql" ]
