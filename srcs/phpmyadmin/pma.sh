@@ -11,9 +11,10 @@ ln -s /usr/share/webapps/phpmyadmin/ /var/www/html/
 cd /
 chown -R www-data:www-data /usr/share/webapps/phpmyadmin/ /var/www/html
 chmod -R a-x,a=rX,u+w /usr/share/webapps/phpmyadmin/ /var/www/html
-mkdir /run/openrc/
+openrc
 touch /run/openrc/softlevel
 rc-status
+rc-service telegraf start
 rc-service -v php-fpm7 start
 nginx -g 'daemon off;'
 # # ln -s /var/www/localhost/htdocs/phpmyadmin/ /var/www/html/

@@ -61,6 +61,13 @@ spec:
               containerPort: 21004
             - name: port21005
               containerPort: 21005
+          livenessProbe:
+            exec:
+              command:
+                - sh
+                - /CheckSrvs.sh
+            initialDelaySeconds: 60
+            periodSeconds: 15
           imagePullPolicy: Never
   replicas: 1
   selector:

@@ -31,6 +31,13 @@ spec:
           ports:
             - name: wordpress
               containerPort: 5050
+          livenessProbe:
+            exec:
+              command:
+                - sh
+                - /CheckSrvs.sh
+            initialDelaySeconds: 60
+            periodSeconds: 15
           imagePullPolicy: Never
   replicas: 1
   selector:

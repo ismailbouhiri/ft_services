@@ -39,6 +39,13 @@ spec:
               containerPort: 80
             - name: https
               containerPort: 443
+          livenessProbe:
+            exec:
+              command:
+                - sh
+                - /CheckSrvs.sh
+            initialDelaySeconds: 60
+            periodSeconds: 15
           imagePullPolicy: Never
   replicas: 1
   selector:

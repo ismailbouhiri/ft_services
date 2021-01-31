@@ -1,6 +1,7 @@
-mkdir /run/openrc
+openrc
 touch /run/openrc/softlevel
 rc-status
+rc-service telegraf start
 /etc/init.d/mariadb setup
 rc-service mariadb start
 mysql --user=root -e "CREATE DATABASE wordpress; use wordpress"
