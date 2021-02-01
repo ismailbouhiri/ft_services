@@ -14,7 +14,7 @@ COPY default.conf /etc/nginx/conf.d/
 COPY pma.sh .
 COPY CheckSrvs.sh /
 COPY config.inc.php .
-COPY telegraf.conf /etc/.
+COPY ./telegraf.conf /etc/
 
 
 RUN mkdir -p /usr/share/webapps/

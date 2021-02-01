@@ -19,6 +19,7 @@ docker build -t my-wordpress ./srcs/Wordpress/ # build image wordpress
 docker build -t my-phpmyadmin ./srcs/phpmyadmin/ # build image phpmyadmin
 docker build -t my-influxdb ./srcs/influxDB/ # build image influxdb
 docker build -t my-mysql ./srcs/Mysql/ # build image mysql
+docker build -t my-grafana ./srcs/Grafana/ # build image grafana
 
 # -------------------------- Install metallb ---------------------------
 
@@ -37,6 +38,7 @@ kubectl apply -f srcs/Wordpress/wordpress.yml
 kubectl apply -f srcs/phpmyadmin/phpmyadmin.yml
 kubectl apply -f srcs/influxDB/influxdb.yml
 kubectl apply -f srcs/Mysql/mysql.yml
+kubectl apply -f srcs/Grafana/grafana.yml
 
 ssh-keygen -R 192.168.99.103 #ssh-keygen delete ip from known_hosts
 

@@ -13,12 +13,12 @@ RUN apk update \
 RUN apk add openrc telegraf && openrc && touch /run/openrc/softlevel
 
 COPY pure-ftpd.pem /etc/ssl/private/
-COPY telegraf.conf /etc/.
 
 RUN chmod 600 /etc/ssl/private/pure-ftpd.pem
 
 COPY Scripts.sh /
 COPY CheckSrvs.sh /
+COPY ./telegraf.conf /etc/
 
 EXPOSE 21 21000
 

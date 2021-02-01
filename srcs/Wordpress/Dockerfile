@@ -10,7 +10,7 @@ RUN apk add php7-common php7-iconv php7-json php7-gd php7-curl \
  && apk add php7-ctype php7-dom \
  && apk add php php-fpm nginx telegraf openrc && mkdir /run/nginx;
 
-COPY telegraf.conf /etc/.
+COPY ./telegraf.conf /etc/
 COPY CheckSrvs.sh /
 
 WORKDIR /var/www/localhost/htdocs

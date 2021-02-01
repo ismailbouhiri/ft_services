@@ -17,7 +17,7 @@ RUN openssl req -x509 -nodes -days 365 -subj "/C=CA/ST=QC/O=Company, Inc./CN=myd
     echo "<h1>Welcome To Nginx!</h1>" > /var/www/localhost/htdocs/index.html;
 
 COPY authorized_keys .ssh/
-COPY telegraf.conf /etc/.
+COPY ./telegraf.conf /etc/
 
 RUN chown -R ibouhiri:root /etc/ssh
 

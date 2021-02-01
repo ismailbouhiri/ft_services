@@ -9,13 +9,14 @@ RUN echo "http://dl-2.alpinelinux.org/alpine/edge/community" >> /etc/apk/reposit
 RUN apk update
 RUN apk add mariadb mariadb-common mariadb-client openrc telegraf && \
     mysql_install_db --user=mysql --datadir=${DB_PATH}
+RUN openrc && touch /run/openrc/softlevel
 
 COPY mariadb-server.cnf /etc/my.cnf.d
 COPY Users.sql .
-COPY telegraf.conf /etc/.
+COPY ./telegraf.conf /etc/
 COPY pma.sql .
 COPY mysql.sh .
-COPY CheckSrvs.sh /
+COPY ./CheckSrvs.sh /
 
 
 VOLUME [ "/var/lib/mysql" ]
