@@ -1,7 +1,4 @@
 minikube delete
-# minikube config set memory 6144
-# minikube config set cpus 2
-# minikube config set vm-driver virtualbox
 minikube start --driver=virtualbox --memory=4096 --cpus=3
 minikube addons enable dashboard 
 eval $(minikube -p minikube docker-env)

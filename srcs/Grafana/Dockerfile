@@ -5,6 +5,7 @@ RUN apk update
 RUN apk add grafana telegraf openrc
 RUN openrc && touch /run/openrc/softlevel
 
+COPY ./grafana.db /usr/share/grafana/data/
 COPY ./CheckSrvs.sh /
 COPY ./grafana.ini /etc/
 COPY ./start.sh /
